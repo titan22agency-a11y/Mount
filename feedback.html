@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>MOUNT | رأيك يفرق معانا</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="feedback.css">
+</head>
+<body>
+<header class="hd"><a href="/" aria-label="MOUNT"><svg viewBox="0 0 1017 836" aria-hidden="true"><use href="sprite.svg#full"></use></svg></a></header>
+
+<main class="wrap">
+  <form class="card" id="form" novalidate>
+    <div class="intro">
+      <h1 id="title">رأيك في أول انطباع عن MOUNT</h1>
+      <p id="sub">أقل من دقيقة، والرد بيوصل لفريقنا مباشرة.</p>
+    </div>
+
+    <fieldset class="q" id="qCsat">
+      <legend>التجربة لحد دلوقتي كانت عاملة إزاي؟ (الطلب، والتوصيل، وأول لبسة)</legend>
+      <div class="stars" role="radiogroup" aria-label="التقييم من 1 لـ 5" id="csatStars"></div>
+      <div class="scale"><span>وحشة جدًا</span><span>ممتازة</span></div>
+    </fieldset>
+
+    <fieldset class="q" id="qFit">
+      <legend>المقاس كان عامل إزاي؟</legend>
+      <div class="opts" role="radiogroup" aria-label="المقاس" id="fitOpts"></div>
+    </fieldset>
+
+    <fieldset class="q" id="qResult" hidden>
+      <legend>بعد اللبس والغسيل، الخامة والراحة عاملين إزاي؟</legend>
+      <div class="stars" role="radiogroup" aria-label="الجودة من 1 لـ 5" id="resultStars"></div>
+      <div class="scale"><span>مش كويسة</span><span>ممتازة</span></div>
+    </fieldset>
+
+    <fieldset class="q" id="qNps" hidden>
+      <legend>من 0 لـ 10، إيه احتمال ترشيحك لـ MOUNT لحد تعرفه؟</legend>
+      <div class="nps" role="radiogroup" aria-label="من 0 لـ 10" id="npsRow"></div>
+      <div class="scale"><span>مستحيل</span><span>أكيد</span></div>
+    </fieldset>
+
+    <fieldset class="q" id="qReasons" hidden>
+      <legend>إيه اللي مكانش على قد التوقعات؟ (اختيار كل اللي ينطبق)</legend>
+      <div class="chips" id="reasonChips"></div>
+    </fieldset>
+
+    <div class="q">
+      <label for="comment" class="lbl">حاجة تانية حابين نعرفها؟ <span>(اختياري)</span></label>
+      <textarea id="comment" maxlength="600" rows="4" placeholder="اكتب هنا…"></textarea>
+    </div>
+
+    <label class="consent" id="consentWrap" hidden><input type="checkbox" id="consent"> موافقة إن MOUNT تنشر تعليقي على الموقع باسمي الأول بس.</label>
+
+    <p class="err" id="err" role="alert" hidden></p>
+    <button class="submit" type="submit" id="submit">إرسال</button>
+  </form>
+
+  <section class="card done" id="done" aria-live="polite" hidden>
+    <svg class="ok" viewBox="0 0 1017 532" aria-hidden="true"><use href="sprite.svg#mark"></use></svg>
+    <h2>شكرًا على وقتك</h2>
+    <p id="doneMsg"></p>
+    <a href="/">الرجوع للموقع</a>
+  </section>
+  <p class="foot" id="foot"></p>
+</main>
+
+<script src="feedback.js"></script>
+</body>
+</html>

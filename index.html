@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MOUNT | Comfort should look good</title>
+<meta name="description" content="MOUNT wide-leg sweatpants for women and men. Cash on delivery across Egypt.">
+<meta name="theme-color" content="#0A0A0A">
+<meta property="og:title" content="MOUNT | Comfort should look good">
+<meta property="og:description" content="Wide-leg sweatpants for women and men.">
+<meta property="og:image" content="og.webp">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preload" href="anton.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="store.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- Utility bar -->
+<div class="util">
+  <div class="util-in">
+    <span>Egypt · EGP · Cash on delivery</span>
+    <span class="util-links"><a href="#track">Track order</a><a href="#faq">Help</a></span>
+  </div>
+</div>
+
+<header class="hd" id="hd">
+  <div class="hd-in">
+    <a class="brand" href="#top" aria-label="MOUNT, home">
+      <svg class="brand-mark" viewBox="0 0 1017 532" aria-hidden="true"><use href="sprite.svg#mark"></use></svg>
+      <svg class="brand-word" viewBox="0 0 748 183" aria-hidden="true"><use href="sprite.svg#word"></use></svg>
+    </a>
+    <nav class="nav" id="mainNav" aria-label="Main">
+      <a href="#top">Home</a>
+      <a href="#shop" data-filter="all">All products</a>
+      <a href="#shop" data-filter="men">Men</a>
+      <a href="#shop" data-filter="women">Women</a>
+      <a href="#track">Track your order</a>
+    </nav>
+    <div class="hd-end">
+      <button type="button" class="ic-btn cart-btn" id="cartBtn" aria-label="Cart, 0 items" aria-haspopup="dialog" aria-controls="cartDrawer">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 12H6.2L5 8Z"/><path d="M9 8V7a3 3 0 0 1 6 0v1"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button type="button" class="ic-btn menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mainNav" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- Announcement ticker: the 3 messages from the dashboard -->
+<div class="ticker" id="ann" role="region" aria-label="Announcements">
+  <div class="ticker-track" id="tickerTrack" aria-hidden="true"></div>
+  <ul class="sr-only" id="annList"></ul>
+  <button type="button" class="ticker-pause" id="tickerPause" aria-pressed="false" aria-label="Pause announcements">❚❚</button>
+</div>
+
+<main id="main">
+  <!-- Hero banner carousel -->
+  <section class="hero" id="top" aria-roledescription="carousel" aria-label="Featured">
+    <div class="slides">
+      <article class="slide s1 on" aria-roledescription="slide" aria-label="1 of 3">
+        <div class="s1-bg" aria-hidden="true"></div>
+        <svg class="s1-mark" viewBox="0 0 1017 532" aria-hidden="true"><use href="sprite.svg#mark"></use></svg>
+        <div class="s-copy">
+          <p class="eyebrow">Higher. Stronger. Together.</p>
+          <h1 class="h-display" id="heroTitle">Comfort should<br>look good.</h1>
+          <p class="s-body" id="heroBody">Wide-leg sweatpants for women and men, cut clean and finished with an embroidered MOUNT logo.</p>
+          <div class="s-cta"><a class="btn light" href="#shop" id="heroCta">Shop now</a></div>
+        </div>
+      </article>
+      <article class="slide s2" aria-roledescription="slide" aria-label="2 of 3">
+        <div class="s-media"><img src="w-model.webp" alt="Model wearing the burgundy Sculpted Wide-Leg Sweatpants" width="440" height="920" loading="lazy"></div>
+        <div class="s-copy">
+          <p class="eyebrow">Women</p>
+          <h2 class="h-display">Sculpted<br>wide-leg</h2>
+          <p class="s-body">High sculpted waistband, curved panel lines and angled pockets, in a fleece-backed cotton blend.</p>
+          <div class="s-cta"><a class="btn light" href="#shop" data-filter="women">Shop women</a></div>
+        </div>
+      </article>
+      <article class="slide s3" aria-roledescription="slide" aria-label="3 of 3">
+        <div class="s-media"><img src="m-front.webp" alt="Heather grey Wide-Leg Sweatpants, front view" width="310" height="700" loading="lazy"></div>
+        <div class="s-copy">
+          <p class="eyebrow">Men</p>
+          <h2 class="h-display">Relaxed<br>wide-leg</h2>
+          <p class="s-body">An easy straight drop with an embroidered mountain logo and the MOUNT label at the pocket.</p>
+          <div class="s-cta"><a class="btn light" href="#shop" data-filter="men">Shop men</a></div>
+        </div>
+      </article>
+    </div>
+    <div class="h-ctrl">
+      <button type="button" class="h-btn" id="heroPrev" aria-label="Previous slide">‹</button>
+      <div class="dots" role="group" aria-label="Choose slide">
+        <button type="button" class="dot on" aria-label="Slide 1" aria-current="true"></button>
+        <button type="button" class="dot" aria-label="Slide 2"></button>
+        <button type="button" class="dot" aria-label="Slide 3"></button>
+      </div>
+      <button type="button" class="h-btn" id="heroNext" aria-label="Next slide">›</button>
+      <button type="button" class="h-btn" id="heroPause" aria-pressed="false" aria-label="Pause slideshow">❚❚</button>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section class="sec" id="shop" aria-labelledby="shopTitle">
+    <header class="sec-title">
+      <p class="kicker">Comfort should look good</p>
+      <h2 id="shopTitle">The collection</h2>
+      <p class="subline">Wide-leg sweatpants · Women &amp; Men</p>
+    </header>
+    <div class="tabs" role="group" aria-label="Filter products">
+      <button type="button" class="tab on" data-tab="all" aria-pressed="true">All</button>
+      <button type="button" class="tab" data-tab="women" aria-pressed="false">Women</button>
+      <button type="button" class="tab" data-tab="men" aria-pressed="false">Men</button>
+    </div>
+    <div class="grid" id="grid" aria-live="polite">
+      <p class="loading">Loading the collection…</p>
+    </div>
+  </section>
+
+  <!-- Shop by fit (collection tiles) -->
+  <section class="sec" id="fits" aria-labelledby="fitsTitle">
+    <header class="sec-title">
+      <h2 id="fitsTitle">Shop by fit</h2>
+    </header>
+    <div class="tiles">
+      <a class="tile" href="#shop" data-filter="women"><img src="w-model.webp" alt="" loading="lazy" width="440" height="920"><span class="tile-btn">Women · Sculpted wide-leg</span></a>
+      <a class="tile" href="#shop" data-filter="men"><img src="m-front.webp" alt="" loading="lazy" width="310" height="700"><span class="tile-btn">Men · Relaxed wide-leg</span></a>
+      <a class="tile" href="#details"><img src="w-waist.webp" alt="" loading="lazy" width="376" height="384"><span class="tile-btn">The waistband</span></a>
+      <a class="tile" href="#details"><img src="m-logo.webp" alt="" loading="lazy" width="612" height="400"><span class="tile-btn">The embroidery</span></a>
+    </div>
+  </section>
+
+  <!-- Details carousel -->
+  <section class="sec" id="details" aria-labelledby="detTitle">
+    <header class="sec-title">
+      <p class="kicker line">The MOUNT details</p>
+      <h2 class="mixed" id="detTitle">Built in the details</h2>
+      <p class="subline">Every line has a job.</p>
+    </header>
+    <div class="reel" id="reel" tabindex="0" aria-label="Product details, scroll sideways">
+      <figure class="reel-card"><img src="w-waist.webp" alt="Close-up of the curved, crossed high waistband" loading="lazy" width="376" height="384"><span class="pill">The waistband</span><figcaption><b>Curved waistband</b><span>High-waist, sculpted crossover band. Women's.</span></figcaption></figure>
+      <figure class="reel-card"><img src="w-panel.webp" alt="Curved stitched panel line on the front of the leg" loading="lazy" width="376" height="376"><span class="pill">The lines</span><figcaption><b>Curved panel lines</b><span>Side panels cut in a different fabric direction. Women's.</span></figcaption></figure>
+      <figure class="reel-card"><img src="w-pocket.webp" alt="Angled side pocket" loading="lazy" width="376" height="360"><span class="pill">The pocket</span><figcaption><b>Angled pockets</b><span>Set into the panel line. Women's.</span></figcaption></figure>
+      <figure class="reel-card"><img src="w-fabric.webp" alt="Close-up of the soft fleece fabric" loading="lazy" width="390" height="590"><span class="pill">The fabric</span><figcaption><b>Fleece-backed</b><span>Cotton blend with a soft, spongy back. Women's.</span></figcaption></figure>
+      <figure class="reel-card"><img src="w-leg.webp" alt="Wide leg hem falling over a sneaker" loading="lazy" width="378" height="590"><span class="pill">The fit</span><figcaption><b>Wide-leg drape</b><span>An oversized fall to the hem.</span></figcaption></figure>
+      <figure class="reel-card"><img src="m-logo.webp" alt="Embroidered mountain logo on grey fabric" loading="lazy" width="612" height="400"><span class="pill">The logo</span><figcaption><b>Embroidered logo</b><span>Stitched, not printed. Men's.</span></figcaption></figure>
+      <figure class="reel-card"><img src="m-label.webp" alt="Black MOUNT woven label at the side pocket" loading="lazy" width="611" height="400"><span class="pill">The label</span><figcaption><b>Pocket label</b><span>Woven MOUNT tab at the side pocket. Men's.</span></figcaption></figure>
+    </div>
+    <div class="reel-ctrl">
+      <button type="button" class="round" id="reelPrev" aria-label="Scroll details back">‹</button>
+      <button type="button" class="round" id="reelNext" aria-label="Scroll details forward">›</button>
+    </div>
+  </section>
+
+  <!-- Shop the look -->
+  <section class="look" aria-labelledby="lookTitle">
+    <div class="look-img">
+      <img src="w-model.webp" alt="Model in burgundy Sculpted Wide-Leg Sweatpants and a black top" loading="lazy" width="440" height="920">
+      <button type="button" class="spot spot-a" data-look="wburgundy" aria-label="Shop the Sculpted Wide-Leg Sweatpants"><span></span></button>
+      <button type="button" class="spot spot-b" data-look="wburgundy" aria-label="See the angled pocket"><span></span></button>
+    </div>
+    <div class="look-side">
+      <p class="kicker">Shop the look</p>
+      <h2 id="lookTitle">Sculpted wide-leg</h2>
+      <div id="lookCard" class="look-card"></div>
+    </div>
+  </section>
+
+  <!-- Fit & care steps -->
+  <section class="sec" id="fit" aria-labelledby="fitTitle">
+    <header class="sec-title">
+      <p class="kicker">Fit &amp; care</p>
+      <h2 id="fitTitle">Three steps to the right pair</h2>
+    </header>
+    <ol class="steps">
+      <li><span class="n">01</span><h3>Pick your cut</h3><p>Women's: high-rise, sculpted waistband, wide leg. Men's: elastic waist, relaxed wide leg.</p></li>
+      <li><span class="n">02</span><h3>Check your size</h3><p class="ph">[SIZE CHART: waist, hip, inseam and length for each size]</p></li>
+      <li><span class="n">03</span><h3>Look after it</h3><p class="ph">[CARE INSTRUCTIONS from the fabric label]</p></li>
+    </ol>
+  </section>
+
+  <!-- Reviews: only shown when the team publishes reviews that customers agreed to share -->
+  <section class="sec" id="reviews" aria-labelledby="revTitle" hidden>
+    <header class="sec-title"><p class="kicker">Reviews</p><h2 id="revTitle">From people who wear it</h2></header>
+    <div class="rev-row" id="revRow"></div>
+  </section>
+
+  <!-- Track order -->
+  <section class="sec" id="track" aria-labelledby="trackTitle">
+    <header class="sec-title">
+      <p class="kicker">Order status</p>
+      <h2 id="trackTitle">Track your order</h2>
+      <p class="subline">Your order number and the mobile number you ordered with.</p>
+    </header>
+    <form class="track-form" id="trackForm" novalidate>
+      <label class="fld">Order number<input id="tOrder" name="order" autocomplete="off" placeholder="MT-1001" required maxlength="20"></label>
+      <label class="fld">Mobile number<input id="tPhone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="01XXXXXXXXX" required maxlength="11"></label>
+      <button class="btn" type="submit" id="tBtn">Track</button>
+      <div class="t-result" id="tResult" role="status" aria-live="polite"></div>
+    </form>
+  </section>
+
+  <!-- FAQ -->
+  <section class="sec" id="faq" aria-labelledby="faqTitle">
+    <header class="sec-title"><p class="kicker">Help</p><h2 id="faqTitle">Questions</h2></header>
+    <div class="faq-list" id="faqList"></div>
+  </section>
+
+  <!-- Trust strip -->
+  <section class="trust" aria-label="Why order from MOUNT">
+    <div class="trust-in">
+      <div class="t-card"><span class="t-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/></svg></span><div><b>Cash on delivery</b><span>Pay the courier when it arrives.</span></div></div>
+      <div class="t-card"><span class="t-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h13l-3-3M20 17H7l3 3"/></svg></span><div><b>Size exchange</b><span class="ph">[EXCHANGE POLICY]</span></div></div>
+      <div class="t-card"><span class="t-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18l1.2-3.6A7.5 7.5 0 1 1 8 19.3Z"/></svg></span><div><b>Help on WhatsApp</b><span>Not sure of your size? Ask us.</span></div></div>
+      <div class="t-card"><span class="t-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.5"/><circle cx="17" cy="17.5" r="1.5"/></svg></span><div><b>Track your order</b><span>Live status with your order number.</span></div></div>
+    </div>
+  </section>
+</main>
+
+<footer class="ft">
+  <div class="ft-pattern" aria-hidden="true"></div>
+  <div class="ft-in">
+    <div class="ft-cols">
+      <div><h3>About MOUNT</h3><p>Comfort should look good. Wide-leg sweatpants for women and men.</p><svg class="ft-logo" viewBox="0 0 1017 836" role="img" aria-label="MOUNT"><use href="sprite.svg#full"></use></svg></div>
+      <div><h3>Shop</h3><a href="#shop" data-filter="all">All products</a><a href="#shop" data-filter="women">Women</a><a href="#shop" data-filter="men">Men</a></div>
+      <div><h3>Help</h3><a href="#track">Track your order</a><a href="#fit">Fit &amp; care</a><a href="#faq">FAQ</a></div>
+      <div><h3>Contact us</h3><a href="#faq" id="footContact">WhatsApp</a><span id="footPhone"></span></div>
+    </div>
+    <div class="ft-bottom">
+      <span class="cod">Cash on delivery</span>
+      <p>© <span id="year">2026</span> MOUNT. Higher. Stronger. Together.</p>
+    </div>
+  </div>
+</footer>
+
+<button type="button" class="to-top" id="toTop" aria-label="Back to top" hidden>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+<a class="wa-float" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="Chat with MOUNT on WhatsApp" hidden>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.6 11.6 0 0 0 4.4 3.9c1.6.7 2.3.8 3.1.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.6-.3Z"/></svg>
+</a>
+
+<!-- Quick view: photos + colour + size + add to cart -->
+<dialog class="qv" id="qv" aria-labelledby="qvTitle">
+  <button type="button" class="x qv-x" id="qvClose" aria-label="Close">×</button>
+  <div class="qv-in" id="qvBody"></div>
+</dialog>
+
+<!-- Cart drawer + checkout -->
+<div class="scrim" id="scrim" hidden></div>
+<aside class="cart" id="cartDrawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle" hidden>
+  <div class="cart-hd">
+    <h2 id="cartTitle">Your cart</h2>
+    <button type="button" class="x" id="cartClose" aria-label="Close cart">×</button>
+  </div>
+  <div class="cart-body" id="cartBody"></div>
+</aside>
+
+<div class="toast" id="toast" role="status" aria-live="polite"><span id="toastText"></span></div>
+
+<script src="store.js"></script>
+</body>
+</html>

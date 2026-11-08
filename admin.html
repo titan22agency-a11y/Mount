@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>MOUNT | لوحة التحكم</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<section id="login" class="login" hidden>
+  <form class="lcard" id="loginForm">
+    <svg class="l-logo" viewBox="0 0 1017 836" role="img" aria-label="MOUNT"><use href="sprite.svg#full"></use></svg>
+    <h1>لوحة تحكم MOUNT</h1>
+    <label class="f">اليوزر<input class="input" id="lUser" autocomplete="username" required dir="ltr"></label>
+    <label class="f">الباسورد<input class="input" type="password" id="lPass" autocomplete="current-password" required dir="ltr"></label>
+    <p class="err" id="lErr" role="alert" hidden></p>
+    <button class="btn tall" type="submit">دخول</button>
+  </form>
+</section>
+
+<div id="app" class="app" hidden>
+  <aside class="side" id="side">
+    <div class="side-logo"><svg viewBox="0 0 748 183" aria-hidden="true"><use href="sprite.svg#word"></use></svg><span>لوحة التحكم</span></div>
+    <nav aria-label="أقسام لوحة التحكم">
+      <span class="grp">المبيعات</span>
+      <button class="nav-btn on" data-view="overview" type="button">نظرة عامة</button>
+      <button class="nav-btn" data-view="orders" type="button">الأوردرات <span class="cnt" id="newCount"></span></button>
+      <button class="nav-btn" data-view="products" type="button">المنتجات والمخزون <span class="cnt warn" id="stockCount"></span></button>
+      <button class="nav-btn" data-view="customers" type="button">العملاء</button>
+      <span class="grp">تجربة العميل</span>
+      <button class="nav-btn" data-view="followups" type="button">متابعات النهارده <span class="cnt" id="fuCount"></span></button>
+      <button class="nav-btn" data-view="satisfaction" type="button">رضا العملاء <span class="cnt warn" id="alertCount"></span></button>
+      <span class="grp admin-only">الإعدادات</span>
+      <button class="nav-btn admin-only" data-view="content" type="button">محتوى الموقع</button>
+      <button class="nav-btn admin-only" data-view="settings" type="button">إعدادات المتابعة</button>
+    </nav>
+    <div class="side-foot">مسجّل كـ <b id="meName"></b> <span class="role" id="meRole"></span><br><button type="button" class="link-btn" id="logout">خروج</button></div>
+  </aside>
+
+  <main class="main">
+    <button type="button" class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="side">القائمة</button>
+    <p class="viewer-note" id="viewerNote" hidden>إنت داخل بصلاحية عرض بس، فمش هتقدر تعدّل حاجة.</p>
+
+    <!-- Overview -->
+    <section class="view on" id="v-overview">
+      <div class="top"><div><h1>نظرة عامة</h1><p class="sub">ملخص المبيعات والأوردرات</p></div><a class="btn ghost" href="/" target="_blank" rel="noopener">افتح الموقع</a></div>
+      <div class="kpis">
+        <div class="card kpi"><p>مبيعات آخر 30 يوم</p><b id="kSales">—</b><small>جنيه، من غير المرتجع والملغي</small></div>
+        <div class="card kpi"><p>عدد الأوردرات</p><b id="kOrders">—</b><small>آخر 30 يوم</small></div>
+        <div class="card kpi"><p>متوسط قيمة الأوردر</p><b id="kAov">—</b><small>جنيه</small></div>
+        <div class="card kpi"><p>رضا العملاء (CSAT)</p><b id="kCsat">—</b><small>قيّموا 4 أو 5 من 5</small></div>
+      </div>
+      <div class="grid2">
+        <div class="card"><div class="ch"><h2>المبيعات آخر 7 أيام</h2><span class="sub">جنيه</span></div><div class="bars" id="bars"></div></div>
+        <div class="card"><div class="ch"><h2>محتاج متابعة</h2></div><div id="attention"></div></div>
+      </div>
+      <div class="card"><div class="ch"><h2>آخر الأوردرات</h2><button class="btn ghost sm" type="button" data-go="orders">كل الأوردرات</button></div><div class="tbl-wrap flat"><table><thead><tr><th>رقم الأوردر</th><th>العميل</th><th>المحافظة</th><th>الإجمالي</th><th>الحالة</th></tr></thead><tbody id="recentBody"></tbody></table></div></div>
+    </section>
+
+    <!-- Orders -->
+    <section class="view" id="v-orders">
+      <div class="top"><div><h1>الأوردرات</h1><p class="sub">اضغط على أي أوردر لتفاصيله وتغيير حالته. لما تعلّمه "اتسلم"، متابعاته بتتجدول لوحدها.</p></div><button class="btn ghost" type="button" id="exportCsv">تصدير Excel (CSV)</button></div>
+      <div class="tools"><input class="input grow" id="search" type="search" placeholder="ابحث بالاسم أو الموبايل أو رقم الأوردر" aria-label="بحث في الأوردرات"></div>
+      <div class="chips" id="statusChips" role="group" aria-label="فلتر بالحالة"></div>
+      <div class="tbl-wrap"><table><thead><tr><th>رقم الأوردر</th><th>التاريخ</th><th>العميل</th><th>الموبايل</th><th>المحافظة</th><th>القطع</th><th>الإجمالي</th><th>الحالة</th></tr></thead><tbody id="ordersBody"></tbody></table></div>
+    </section>
+
+    <!-- Products -->
+    <section class="view" id="v-products">
+      <div class="top"><div><h1>المنتجات والمخزون</h1><p class="sub">المخزون بالمقاس. المنتج اللي سعره 0 بيظهر في الموقع "قريبًا" ومحدش يقدر يطلبه.</p></div></div>
+      <div id="productList" class="stack"></div>
+    </section>
+
+    <!-- Customers -->
+    <section class="view" id="v-customers">
+      <div class="top"><div><h1>العملاء</h1><p class="sub">كل عميل بأوردراته وآخر تقييم له</p></div></div>
+      <input class="input narrow" id="custSearch" type="search" placeholder="ابحث بالاسم أو الموبايل" aria-label="بحث العملاء">
+      <div class="tbl-wrap"><table><thead><tr><th>العميل</th><th>الموبايل</th><th>المحافظة</th><th>الأوردرات</th><th>إجمالي المشتريات</th><th>آخر تقييم</th><th>تواصل</th></tr></thead><tbody id="custBody"></tbody></table></div>
+    </section>
+
+    <!-- Follow-ups -->
+    <section class="view" id="v-followups">
+      <div class="top"><div><h1>متابعات النهارده</h1><p class="sub">العملاء اللي جه دور التواصل معاهم حسب تاريخ التسليم. "ابعت على واتساب" بيفتح رسالة جاهزة، وبعدها بتتعلّم إنها اتبعتت.</p></div></div>
+      <div class="chips" id="fuChips" role="group" aria-label="فلتر بنوع المتابعة"></div>
+      <div class="card" id="fuList"></div>
+      <div class="card"><div class="ch"><h2>اتبعتت مؤخرًا</h2></div><div id="fuSent"></div></div>
+    </section>
+
+    <!-- Satisfaction -->
+    <section class="view" id="v-satisfaction">
+      <div class="top"><div><h1>رضا العملاء</h1><p class="sub">كل الفيدباك بيرجع هنا، مربوط بالعميل والأوردر</p></div><a class="btn ghost" href="/feedback?o=PREVIEW&amp;t=result" target="_blank" rel="noopener">شوف صفحة الفيدباك زي العميل</a></div>
+
+      <div class="kpis">
+        <div class="card kpi"><p>CSAT</p><b id="sCsat">—</b><small>نسبة اللي قيّموا 4 أو 5 (أول انطباع)</small></div>
+        <div class="card kpi"><p>NPS</p><b id="sNps">—</b><small>مروّجين ناقص منتقدين (بعد شهر)</small></div>
+        <div class="card kpi"><p>المقاس مظبوط</p><b id="sFit">—</b><small>من اللي جاوبوا على سؤال المقاس</small></div>
+        <div class="card kpi"><p>إعادة الشراء</p><b id="sRepeat">—</b><small>عملاء طلبوا أكتر من مرة</small></div>
+      </div>
+
+      <div class="card alert"><div class="ch"><h2>تقييمات محتاجة اتصال (1 أو 2)</h2><span class="sub">الهدف: خلال 24 ساعة</span></div><div id="alerts"></div></div>
+
+      <div class="grid2e">
+        <div class="card">
+          <div class="ch"><h2>توزيع NPS</h2></div>
+          <div class="dist" id="npsDist"></div>
+          <div class="legend"><span><i class="lg-pro"></i>مروّجين 9–10</span><span><i class="lg-pas"></i>محايدين 7–8</span><span><i class="lg-det"></i>منتقدين 0–6</span></div>
+          <p class="sub" id="npsNote"></p>
+        </div>
+        <div class="card">
+          <div class="ch"><h2>أسباب عدم الرضا</h2><span class="sub">من التقييمات 3 أو أقل</span></div>
+          <div id="reasons"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="ch"><h2>المقاس حسب المنتج</h2><span class="sub">من سؤال أول انطباع: "المقاس كان عامل إزاي؟"</span></div>
+        <div id="fitTable"></div>
+        <p class="sub">لو منتج كتير من عملاؤه قالوا "صغير" أو "كبير"، راجع جدول المقاسات أو اكتب نصيحة على الموقع (زي "اطلب مقاس أكبر").</p>
+      </div>
+
+      <div class="card">
+        <div class="ch"><h2>كل الفيدباك</h2><div class="chips" id="fbChips" role="group" aria-label="فلتر الفيدباك"></div></div>
+        <div class="tbl-wrap flat"><table><thead><tr><th>التاريخ</th><th>العميل</th><th>المرحلة</th><th>التقييم</th><th>المقاس</th><th>NPS</th><th>التعليق</th><th>ريفيو على الموقع</th></tr></thead><tbody id="fbBody"></tbody></table></div>
+      </div>
+
+      <div class="card explain">
+        <h2>رحلة العميل في براند لبس بيبيع أونلاين</h2>
+        <p>في البنطلون، العميل بيحكم مرتين: أول ما يلبسه (المقاس والخامة واللون زي الصور ولا لأ)، وبعد ما يلبسه ويغسله كذا مرة (الخامة استحملت؟ لسه مريح؟). عشان كده السيستم بيسأل في اللحظتين دول، والمقاس بيتسأل بدري جوه فترة التبديل.</p>
+        <div class="journey">
+          <div class="jstep"><span class="n">01</span><h3>الاكتشاف</h3><p>إعلان، إنستجرام، الموقع، أسئلة الواتساب قبل الشراء.</p><span class="m">نسبة التحويل</span></div>
+          <div class="jstep"><span class="n">02</span><h3>الأوردر والتأكيد</h3><p>مكالمة أو رسالة تأكيد سريعة، خصوصًا مع الدفع عند الاستلام.</p><span class="m">وقت التأكيد · الملغي</span></div>
+          <div class="jstep"><span class="n">03</span><h3>الشحن والتسليم</h3><p>تحديث بكل مرحلة، وصفحة تتبع برقم الأوردر والموبايل.</p><span class="m">أيام التوصيل · المرفوض</span></div>
+          <div class="jstep"><span class="n">04</span><h3>المقاس · يوم 2</h3><p>"وصلك؟ المقاس مظبوط؟" لو لأ، التبديل يتعمل بدري.</p><span class="m">طلبات التبديل</span></div>
+          <div class="jstep"><span class="n">05</span><h3>أول انطباع · يوم 7</h3><p>تقييم 1 لـ 5 للتجربة، وسؤال المقاس، وسبب لو التقييم قليل.</p><span class="m">CSAT · المقاس</span></div>
+          <div class="jstep"><span class="n">06</span><h3>بعد اللبس والغسيل · يوم 30</h3><p>الخامة استحملت؟ هيرشحنا؟ وطلب ريفيو بموافقته.</p><span class="m">NPS · الجودة</span></div>
+          <div class="jstep"><span class="n">07</span><h3>إعادة الطلب</h3><p>ألوان أو موديلات جديدة، لمّا تنزل.</p><span class="m">إعادة الشراء</span></div>
+        </div>
+      </div>
+
+      <div class="card def">
+        <h2>إزاي الأرقام دي بتتحسب</h2>
+        <p><b>CSAT:</b> سؤال "قيّم تجربتك من 1 لـ 5" في أول انطباع. النتيجة = نسبة اللي اختاروا 4 أو 5 من اللي ردّوا.</p>
+        <p><b>NPS:</b> سؤال "إيه احتمال إنك ترشّح MOUNT لحد تعرفه؟ من 0 لـ 10" بعد شهر. 9–10 مروّجين، 0–6 منتقدين. الرقم = نسبة المروّجين ناقص نسبة المنتقدين، من −100 لـ +100.</p>
+        <p><b>المقاس مظبوط:</b> نسبة اللي اختاروا "مظبوط" من اللي جاوبوا على سؤال المقاس.</p>
+        <p class="sources">مصدر NPS: <a href="https://hbr.org/2003/12/the-one-number-you-need-to-grow" target="_blank" rel="noopener">Reichheld, F. (2003). The One Number You Need to Grow. Harvard Business Review</a></p>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <section class="view" id="v-content">
+      <div class="top"><div><h1>محتوى الموقع</h1><p class="sub">النصوص اللي بتتغير كتير، من غير ما تحتاج مطوّر. الموقع إنجليزي، فاكتبها بالإنجليزي.</p></div><button class="btn" type="button" id="saveContent">حفظ التعديلات</button></div>
+      <div class="card form">
+        <h2>شريط العروض (الشريط اللي بيلف فوق الموقع)</h2>
+        <label class="f">رسالة 1<input class="input" id="ann1" dir="ltr" maxlength="140"></label>
+        <label class="f">رسالة 2<input class="input" id="ann2" dir="ltr" maxlength="140"></label>
+        <label class="f">رسالة 3<input class="input" id="ann3" dir="ltr" maxlength="140"></label>
+      </div>
+      <div class="card form">
+        <h2>الشريحة الأولى في الهيرو</h2>
+        <label class="f">العنوان (Enter = سطر جديد)<textarea id="heroTitle" rows="2" dir="ltr" maxlength="120"></textarea></label>
+        <label class="f">الوصف<textarea id="heroBody" rows="3" dir="ltr" maxlength="400"></textarea></label>
+        <label class="f">نص الزرار<input class="input" id="heroCta" dir="ltr" maxlength="40"></label>
+      </div>
+      <div class="card form">
+        <h2>الشحن والتواصل</h2>
+        <label class="f">سعر الشحن (جنيه)<input class="input short" id="shipFee" type="number" min="0"></label>
+        <label class="f">الحد الأدنى للشحن المجاني (جنيه، 0 = مفيش شحن مجاني)<input class="input short" id="freeShip" type="number" min="0"></label>
+        <label class="f">رقم واتساب البراند (للزرار اللي على الموقع)<input class="input short" id="waNum" type="tel" placeholder="01XXXXXXXXX" dir="ltr"></label>
+      </div>
+    </section>
+
+    <!-- Settings -->
+    <section class="view" id="v-settings">
+      <div class="top"><div><h1>إعدادات المتابعة</h1><p class="sub">مواعيد رسايل ما بعد التسليم ونصوصها</p></div><button class="btn" type="button" id="saveSettings">حفظ</button></div>
+      <div class="card form">
+        <h2>المواعيد (بالأيام بعد التسليم)</h2>
+        <div class="tools">
+          <label class="f">سؤال المقاس<input class="input num" type="number" min="1" max="365" id="setDFit"></label>
+          <label class="f">أول انطباع<input class="input num" type="number" min="1" max="365" id="setDFirst"></label>
+          <label class="f">الجودة وNPS<input class="input num" type="number" min="1" max="365" id="setDResult"></label>
+          <label class="f">إعادة الطلب<input class="input num" type="number" min="1" max="365" id="setDReorder" placeholder="مقفول"></label>
+        </div>
+        <div class="why-box">
+          <p><b>ليه يوم 2 للمقاس ويوم 7 لأول انطباع؟</b> قانون حماية المستهلك المصري (رقم 181 لسنة 2018) بيدّي العميل حق الاستبدال أو الإرجاع خلال 14 يوم من الاستلام. لو مشكلة المقاس اتعرفت يوم 2، التبديل بيتعمل جوه المدة وبسرعة. ويوم 7 لسه جوه المدة، فلو التقييم وحش لسه فيه وقت تحلّها.</p>
+          <p><b>ليه يوم 30 للجودة وNPS؟</b> البنطلون الفليس بيتحكم عليه بعد ما يتلبس ويتغسل كذا مرة (الوبر، اللون، الشكل). شهر بيدّي فرصة لده، وده وقت مناسب كمان تطلب ريفيو.</p>
+          <p><b>إعادة الطلب مقفولة</b> لحد ما تكتب عدد الأيام. فعّلها لما يبقى عندك ألوان أو موديلات جديدة تعرضها، مش قبل كده.</p>
+        </div>
+      </div>
+      <div class="card form">
+        <h2>نصوص الرسايل</h2>
+        <p class="sub">استخدم {name} لاسم العميل، و{order} لرقم الأوردر، و{link} للينك الفيدباك. الرسايل مكتوبة بصيغة تنفع للراجل والست.</p>
+        <label class="f">سؤال المقاس<textarea id="msgFit" rows="2" maxlength="600"></textarea></label>
+        <label class="f">أول انطباع (لازم فيها {link})<textarea id="msgFirst" rows="2" maxlength="600"></textarea></label>
+        <label class="f">الجودة وNPS (لازم فيها {link})<textarea id="msgResult" rows="2" maxlength="600"></textarea></label>
+        <label class="f">إعادة الطلب<textarea id="msgReorder" rows="2" maxlength="600"></textarea></label>
+        <label class="f">اتصال بعد تقييم وحش<textarea id="msgRecover" rows="2" maxlength="600"></textarea></label>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dTitle" hidden>
+  <div class="dh"><h2 id="dTitle">أوردر</h2><button class="x" type="button" id="dClose" aria-label="إغلاق">×</button></div>
+  <div class="db" id="dBody"></div>
+</aside>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="admin.js"></script>
+</body>
+</html>
