@@ -446,7 +446,7 @@ const withVersions = html => html.replace(/(href|src)="([a-z0-9-]+\.(?:css|js|sv
 function serveStatic(req, res, url) {
   let name = ROUTES[url.pathname.replace(/\/+$/, '') || '/'] || url.pathname.slice(1);
   // Only plain file names with a known extension: no "/", no "..", so nothing outside public/ can be read.
-  if PRIVATE.has(name) ||  (!/^[a-z0-9-]+\.(html|css|js|png|jpg|webp|svg|ico|woff2|txt)$/.test(name)) { res.writeHead(404, { 'Content-Type': 'text/plain' }); return res.end('Not found'); }
+if (PRIVATE.has(name) || !/^[a-z0-9-]+\.(html|css|js|png|jpg|webp|svg|ico|woff2|txt)$/.test(name)) { res.writeHead(404, { 'Content-Type': 'text/plain' }); return res.end('Not found'); }
   const file = path.join(PUBLIC, name);
   fs.readFile(file, (err, buf) => {
     if (err) { res.writeHead(404, { 'Content-Type': 'text/plain' }); return res.end('Not found'); }
