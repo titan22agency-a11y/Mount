@@ -13,8 +13,8 @@ const { DatabaseSync } = require('node:sqlite');
 
 const DATA = process.env.MOUNT_DATA || path.join(__dirname, '.data');
 const PORT = Number(process.env.PORT || 3201);
-const PUBLIC = path.join(__dirname, 'public');
-fs.mkdirSync(DATA, { recursive: true });
+const PUBLIC = fs.existsSync(path.join(__dirname, 'public')) ? path.join(__dirname, 'public') : __dirname;
+const PRIVATE = new Set(['server.js', 'mount-setup.sh']);fs.mkdirSync(DATA, { recursive: true });
 const db = new DatabaseSync(path.join(DATA, 'mount.db'));
 db.exec(`PRAGMA journal_mode=WAL; PRAGMA foreign_keys=ON; PRAGMA busy_timeout=5000;
 CREATE TABLE IF NOT EXISTS users(username TEXT PRIMARY KEY, name TEXT, role TEXT NOT NULL, salt TEXT NOT NULL, hash TEXT NOT NULL, created TEXT NOT NULL);
