@@ -66,8 +66,7 @@ const settings = () => Object.assign({}, DEFAULT_SETTINGS, kvGet('settings', {})
 // ---------- passwords & sessions
 function hashPw(pw, salt) { return crypto.scryptSync(pw, salt, 64).toString('hex'); }
 function setUser(username, role, name) {
-    if (PRIVATE.has(name) || !/^[a-z0-9-]+{2,32}$/.test(username)) throw new Error('username: 2-32 chars a-z 0-9 . _ -');
-  if (!['admin', 'staff', 'viewer'].includes(role)) throw new Error('role: admin | staff | viewer');
+  if (!/^[a-z0-9._-]{2,32}$/.test(username)) throw new Error('username: 2-32 chars a-z 0-9 . _ -');  if (!['admin', 'staff', 'viewer'].includes(role)) throw new Error('role: admin | staff | viewer');
   const pw = crypto.randomBytes(9).toString('base64url');
   const salt = crypto.randomBytes(16).toString('hex');
   db.prepare(`INSERT INTO users(username,name,role,salt,hash,created) VALUES(?,?,?,?,?,?)
@@ -447,7 +446,7 @@ const withVersions = html => html.replace(/(href|src)="([a-z0-9-]+\.(?:css|js|sv
 function serveStatic(req, res, url) {
   let name = ROUTES[url.pathname.replace(/\/+$/, '') || '/'] || url.pathname.slice(1);
   // Only plain file names with a known extension: no "/", no "..", so nothing outside public/ can be read.
-  if (!/^[a-z0-9-]+\.(html|css|js|png|jpg|webp|svg|ico|woff2|txt)$/.test(name)) { res.writeHead(404, { 'Content-Type': 'text/plain' }); return res.end('Not found'); }
+  if PRIVATE.has(name) ||  (!/^[a-z0-9-]+\.(html|css|js|png|jpg|webp|svg|ico|woff2|txt)$/.test(name)) { res.writeHead(404, { 'Content-Type': 'text/plain' }); return res.end('Not found'); }
   const file = path.join(PUBLIC, name);
   fs.readFile(file, (err, buf) => {
     if (err) { res.writeHead(404, { 'Content-Type': 'text/plain' }); return res.end('Not found'); }
